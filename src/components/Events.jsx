@@ -3,7 +3,7 @@ import "../index.css"
 import { Link } from "react-router-dom";
 import videoe1 from "../Landing_media/satellitevid.mp4"
 import waterpng from "../Landing_media/waterrocket.png"
-import watervid from "../Landing_media/waterrocketvid.mp4"
+import watervid from "../Landing_media/bharatmpvid.mp4"
 import bharatmppng from "../Landing_media/bharatmp.jpeg"
 import bharatmpvid from "../Landing_media/bharatmpvid.mp4"
 import damrupng from "../Landing_media/DamruExhibit.jpeg"
