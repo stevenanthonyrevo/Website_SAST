@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { showToast } from "../main.jsx";
 import { BASE_URL } from "../api";
+import Footer from "../components/footer.jsx"
 
 export default function Register() {
   const [method, setMethod] = useState("email");
@@ -440,6 +442,7 @@ export default function Register() {
           </p>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
