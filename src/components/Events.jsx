@@ -287,8 +287,8 @@ const Events = () => {
 
               {isLeft ? (
                 <>
-                  <div className="col-span-4 pr-6 text-right">
-                    <div className="bg-gradient-to-br from-white/5 via-white/10 to-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-8 min-h-[220px] w-full shadow-xl transition hover:scale-[1.015] duration-300">
+                  <div className="col-span-4 pr-6 text-center mt-4">
+                    <div className="bg-gradient-to-br from-white/5 via-white/10 to-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-19 min-h-[220px] w-full shadow-xl transition hover:scale-[1.015] duration-300">
                       <p className="text-sm text-blue-200 mb-1">{event.date}</p>
                       <h3 className="text-2xl font-bold mb-2">{event.title}</h3>
                       <p className="text-gray-300 text-sm">{event.description}</p>
@@ -301,7 +301,7 @@ const Events = () => {
                 <>
                   <div className="col-span-4" />
                   <div className="col-span-1" />
-                  <div className="col-span-4 pl-6 text-left">
+                  <div className="col-span-4 pl-6 text-center mt-4">
                     <div className="bg-gradient-to-bl from-white/5 via-white/10 to-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-8 min-h-[220px] w-full shadow-xl transition hover:scale-[1.015] duration-300">
                       <p className="text-sm text-blue-200 mb-1">{event.date}</p>
                       <h3 className="text-2xl font-bold mb-2">{event.title}</h3>
