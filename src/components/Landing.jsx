@@ -91,7 +91,7 @@ const Landing = () => {
               <br />
               NEXT GENERATION
               <br />
-              OF SPACE EXPLORERS....
+              OF SPACE EXPLORERS.....
             </h1>
           </div>
         </section>
