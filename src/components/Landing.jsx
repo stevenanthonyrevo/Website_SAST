@@ -158,7 +158,7 @@ const Landing = () => {
         </section>
 
         <hr className="vbar opacity-20" />
-        <section className="hero-section min-h-[70vh] py-20">
+        <section className="hero-section min-h-[40vh] py-8 md:min-h-[70vh] md:py-20">
           <div className="video-container">
             <video autoPlay muted loop playsInline className="bg-video">
               <source src={videosource2} type="video/mp4" />
@@ -179,7 +179,7 @@ const Landing = () => {
         </section>
         <hr className="vbar opacity-20" />
 
-        <section className="hero-section min-h-[70vh] py-20">
+        <section className="hero-section min-h-[40vh] py-8 md:min-h-[70vh] md:py-20">
           <div className="video-container">
             <video autoPlay muted loop playsInline className="bg-video">
               <source src={videosource3} type="video/mp4" />
@@ -197,7 +197,7 @@ const Landing = () => {
         </section>
         <hr className="vbar opacity-20" />
 
-        <section className="hero-section min-h-[70vh] py-20">
+        <section className="hero-section min-h-[40vh] py-8 md:min-h-[70vh] md:py-20">
           <div className="video-container">
             <video autoPlay muted loop playsInline className="bg-video">
               <source src={videosource4} type="video/mp4" />
