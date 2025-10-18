@@ -1,0 +1,26 @@
+area/frontend:
+  - 'src/**'
+  - 'public/**'
+  - '**/*.jsx'
+  - '**/*.tsx'
+  - 'vite.config.*'
+  - 'tailwind.config.*'
+  - 'postcss.config.*'
+
+area/backend:
+  - 'backend/**'
+
+area/docs:
+  - '**/*.md'
+  - 'docs/**'
+  - 'README.md'
+
+area/ci:
+  - '.github/**'
+  - '.lychee.toml'
+  - '.typos.toml'
+
+dependencies:
+  - 'package.json'
+  - 'package-lock.json'
+  - 'pnpm-lock.yaml'

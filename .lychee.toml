@@ -1,0 +1,9 @@
+fail = "true"
+max-redirects = 5
+user-agent = "Mozilla/5.0 (SAST Website link checker)"
+
+exclude = [
+  "http://localhost:*",
+  "https://localhost:*",
+  "mailto:*"
+]
