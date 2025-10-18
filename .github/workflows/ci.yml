@@ -1,0 +1,58 @@
+name: CI (lint & build)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Detect package manager
+        id: pm
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            echo "name=pnpm" >> $GITHUB_OUTPUT
+          else
+            echo "name=npm" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install deps (pnpm)
+        if: steps.pm.outputs.name == 'pnpm'
+        run: |
+          corepack enable
+          pnpm i --frozen-lockfile
+
+      - name: Install deps (npm)
+        if: steps.pm.outputs.name == 'npm'
+        run: npm ci
+
+      - name: Lint (eslint flat config)
+        run: |
+          if [ -f eslint.config.js ]; then
+            npx eslint . --max-warnings=0
+          else
+            echo "No eslint.config.js found; skipping lint."
+          fi
+
+      - name: Build (Vite)
+        run: |
+          if grep -q '"build": *"vite build"' package.json; then
+            npx vite build
+          else
+            echo "No vite build script; skipping build."
+          fi
