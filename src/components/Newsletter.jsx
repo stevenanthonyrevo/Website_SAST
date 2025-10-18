@@ -13,8 +13,10 @@ import {
   Satellite,
   Globe,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Newsletter = () => {
+  const naviagate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -900,29 +902,32 @@ const Newsletter = () => {
               experts.
             </p>
             <div style={buttonGroupStyle}>
-              <button
-                style={{
-                  ...secondaryButtonStyle,
-                  backgroundColor:
-                    hoveredCard === "community"
-                      ? secondaryButtonHoverStyle.backgroundColor
-                      : secondaryButtonStyle.backgroundColor,
-                  borderColor:
-                    hoveredCard === "community"
-                      ? secondaryButtonHoverStyle.borderColor
-                      : secondaryButtonStyle.borderColor,
-                  transform:
-                    hoveredCard === "community"
-                      ? secondaryButtonHoverStyle.transform
-                      : secondaryButtonStyle.transform,
-                }}
-                onMouseEnter={() => setHoveredCard("community")}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                <Users style={{ width: 20, height: 20 }} />
-                Join Community
-                <ChevronRight style={{ width: 16, height: 16 }} />
-              </button>
+              
+              <a href="https://linkedin.com/company/society-for-aerospace-and-space-technology" target="_blank" rel="noopener noreferrer">
+                <button
+                    style={{
+                    ...secondaryButtonStyle,
+                    backgroundColor:
+                        hoveredCard === "community"
+                        ? secondaryButtonHoverStyle.backgroundColor
+                        : secondaryButtonStyle.backgroundColor,
+                    borderColor:
+                        hoveredCard === "community"
+                        ? secondaryButtonHoverStyle.borderColor
+                        : secondaryButtonStyle.borderColor,
+                    transform:
+                        hoveredCard === "community"
+                        ? secondaryButtonHoverStyle.transform
+                        : secondaryButtonStyle.transform,
+                    }}
+                    onMouseEnter={() => setHoveredCard("community")}
+                    onMouseLeave={() => setHoveredCard(null)}
+                >
+                    <Users style={{ width: 20, height: 20 }} />
+                    Join Community
+                    <ChevronRight style={{ width: 16, height: 16 }} />
+                </button>
+              </a>
               <button
                 style={{
                   ...secondaryButtonStyle,
@@ -941,6 +946,7 @@ const Newsletter = () => {
                 }}
                 onMouseEnter={() => setHoveredCard("explore")}
                 onMouseLeave={() => setHoveredCard(null)}
+                onClick={()=>naviagate("/projects")}
               >
                 <Globe style={{ width: 20, height: 20 }} />
                 Explore Missions
