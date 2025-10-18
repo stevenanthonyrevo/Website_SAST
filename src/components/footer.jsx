@@ -46,7 +46,7 @@ function Footer() {
                     <FaInstagram />
                 </a>
                 <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/company/society-for-aerospace-and-space-technology/?viewAsMember=true"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white text-2xl hover:text-blue-600 transition"
