@@ -3,47 +3,37 @@ name: PR helper comment
 on:
   pull_request_target:
     types: [opened, reopened]
-  workflow_dispatch: {}
 
 permissions:
   pull-requests: write
   contents: read
 
 jobs:
-  greet:
+  comment:
     runs-on: ubuntu-latest
     steps:
-      - name: Post checklist comment
-        uses: actions/github-script@v7
+      - uses: actions/github-script@v7
         with:
           script: |
             const pr = context.payload.pull_request;
-            if (!pr) {
-              core.notice("No PR context (manual run).");
-              return;
-            }
-
-            const lines = [
-              `Thanks for the PR, @${pr.user.login}! 👋`,
+            const body = [
+              `Thanks for the PR, @${pr.user.login}!`,
               "",
-              "**Quick checklist**",
-              "- [ ] Title follows our convention (e.g., `[component] Short summary`)",
-              "- [ ] Description explains What / Why / How",
-              "- [ ] Linked issue (e.g., `Fixes #123`)",
-              "- [ ] Screenshots for UI changes (light & dark)",
-              "- [ ] Tests + lint pass locally",
-              "- [ ] Commits signed (DCO) if required",
+              "**Quick note:** please **sign off** your commits to pass the DCO check.",
               "",
-              "**Docs & Guides**",
-              "- Contributing guide: <YOUR_CONTRIBUTING_DOC_LINK>",
-              "- Code style rules: <YOUR_CODESTYLE_DOC_LINK>",
-              "- DCO info: <YOUR_DCO_DOC_LINK>",
+              "Fix (any one):",
+              "```bash",
+              "git commit --amend -s     # adds 'Signed-off-by' to your last commit",
+              "git push --force-with-lease",
+              "```",
+              "Multiple commits?",
+              "```bash",
+              "git rebase -i origin/main     # mark each as 'reword' and add -s",
+              "git push --force-with-lease",
+              "```",
               "",
-              "If this PR is WIP, mark it as `Draft`."
-            ];
-
-            const body = lines.join("\n");
-
+              "What is DCO? See https://developercertificate.org/"
+            ].join("\n");
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
