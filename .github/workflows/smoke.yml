@@ -1,0 +1,13 @@
+name: Smoke Test Workflow
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+  workflow_dispatch:
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "🔥 Hello from GitHub Actions!"
