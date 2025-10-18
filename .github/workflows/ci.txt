@@ -1,0 +1,75 @@
+name: CI (lint & build)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1) Detect package manager
+      - name: Detect package manager
+        id: pm
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            echo "pm=pnpm" >> $GITHUB_OUTPUT
+          else
+            echo "pm=npm" >> $GITHUB_OUTPUT
+          fi
+
+      # 2a) Setup Node w/ pnpm cache
+      - name: Use Node.js 20 (pnpm cache)
+        if: steps.pm.outputs.pm == 'pnpm'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      # 2b) Setup Node w/ npm cache
+      - name: Use Node.js 20 (npm cache)
+        if: steps.pm.outputs.pm == 'npm'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # 3a) Install deps (pnpm)
+      - name: Install deps (pnpm)
+        if: steps.pm.outputs.pm == 'pnpm'
+        run: |
+          corepack enable
+          pnpm --version
+          pnpm install --frozen-lockfile
+
+      # 3b) Install deps (npm)
+      - name: Install deps (npm)
+        if: steps.pm.outputs.pm == 'npm'
+        run: npm ci
+
+      # 4) Lint (flat config supported)
+      - name: Lint (eslint)
+        run: |
+          if [ -f eslint.config.js ] || [ -f .eslintrc.* ]; then
+            npx eslint . --max-warnings=0
+          else
+            echo "No ESLint config found; skipping lint."
+          fi
+
+      # 5) Build (Vite if present)
+      - name: Build (Vite)
+        run: |
+          if npx --yes --quiet -c "node -e ''" >/dev/null 2>&1 && \
+             grep -q '"build": *"vite build' package.json 2>/dev/null; then
+            npx vite build
+          else
+            echo "No vite build script; skipping build."
+          fi
