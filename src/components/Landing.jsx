@@ -242,7 +242,7 @@ const Landing = () => {
         <br />
         <br />
         {/*optimizing this for mobile users*/}
-        <form className="w-full md:h-60 m-5" style={{ padding: "20px" }}>
+      <form className="w-full pb-16 m-5" style={{ padding: "20px" }}>
           <div className="news flex flex-col md:flex-row justify-evenly gap-8">
             <div className="flex flex-col gap-8" style={{ margin: "10px" }}>
               <div className="text-2xl md:text-4xl font-bold md:w-150 w-fit md:text-start text-center">
