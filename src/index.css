@@ -66,6 +66,25 @@ body {
 
 @media (max-width: 768px) {
   .main-nav {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+  }
+
+  .main-nav .nav-links li a {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 6rem);
+    letter-spacing: -0.02em;
+    margin-left: 2rem;
+  }
+
+  .main-nav .nav-links li {
+    border-top-left-radius: 10px 10px;
+    padding: .4rem;
+  }
+
+  .main-nav {
     display: none;
   }
 
@@ -828,8 +847,16 @@ a {
   }
 
   .nav-links li {
-    margin: 1rem 0;
+    margin: 0;
+    background-color: #0d0d0d;
   }
+
+  .main-nav .nav-links {
+    gap: 2.3px;
+    text-align: left;
+    padding-left: 1rem;
+  }
+
 }
 
 .header {
@@ -1193,7 +1220,7 @@ a {
 .hamburger-line {
   width: 2rem;
   height: 0.25rem;
-  background: #333;
+  background: #FFF;
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
@@ -1215,7 +1242,7 @@ a {
 @media (max-width: 768px) {
   .main-nav {
     position: fixed;
-    top: 0;
+    top: 70px;
     right: 0;
     height: 100vh;
     width: 100%;

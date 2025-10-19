@@ -88,8 +88,10 @@ const Navbar = () => {
               <li>
                 <a href="/track">Track</a>
               </li>
+              <li>
+                <Link to="/Register">Register</Link>
+              </li>
 
-              <Link to="/Register">Register</Link>
             </ul>
           </nav>
 
