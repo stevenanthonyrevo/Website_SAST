@@ -1,7 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import { getAllMembers, getActiveMembers } from "../lib/members/data";
 
 /* ---------------- Filter pill ---------------- */
@@ -28,19 +28,7 @@ function FilterPill({ value = true, onChange }) {
   );
 }
 
-FilterPill.propTypes = {
-  value: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
-};
-
 /* ---------------- Card ---------------- */
-
-const memberShape = PropTypes.shape({
-  slug: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  role: PropTypes.string,
-  avatarUrl: PropTypes.string,
-});
 
 function MemberCard({ m }) {
   return (
@@ -76,15 +64,15 @@ function MemberCard({ m }) {
   );
 }
 
-MemberCard.propTypes = { m: memberShape.isRequired };
-
 /* ---------------- Page ---------------- */
 
 export default function Members() {
   const all = getAllMembers();
   const active = getActiveMembers();
+
   const [activeOnly, setActiveOnly] = useState(true);
 
+  // Source data based on filter (NO dummy padding)
   const data = useMemo(
     () => (activeOnly ? active : all),
     [activeOnly, all, active]
@@ -101,19 +89,29 @@ export default function Members() {
             paddingRight: "1.5rem",
           }}
         >
-          <header className="relative w-full" style={{ marginTop: "3rem", marginBottom: "3.75rem" }}>
+          <header
+            className="relative w-full"
+            style={{ marginTop: "3rem", marginBottom: "3.75rem" }}
+          >
             <h1 className="text-center text-[38px] font-extrabold leading-tight tracking-[-0.02em] text-white md:text-6xl">
               Meet our Community Members
             </h1>
-            <p className="text-center text-lg text-white/75 md:text-2xl" style={{ marginTop: "1rem" }}>
+            <p
+              className="text-center text-lg text-white/75 md:text-2xl"
+              style={{ marginTop: "1rem" }}
+            >
               A warm and welcoming collection of open sourcers
             </p>
+
             <div className="absolute right-0 top-1 hidden md:block">
               <FilterPill value={activeOnly} onChange={setActiveOnly} />
             </div>
           </header>
 
-          <div className="flex w-full justify-center md:hidden" style={{ marginBottom: "2rem" }}>
+          <div
+            className="flex w-full justify-center md:hidden"
+            style={{ marginBottom: "2rem" }}
+          >
             <FilterPill value={activeOnly} onChange={setActiveOnly} />
           </div>
 
