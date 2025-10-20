@@ -13,5 +13,20 @@
       "linkedin": "https://www.linkedin.com/in/",
       "community": "https://www.linkedin.com/company/society-for-aerospace-and-space-technology/?viewAsMember=true"
     }
+  },
+  {
+    "slug": "mayank-sharma",
+    "name": "Mayank Sharma",
+    "role": "Member",
+    "location": "Village Jaggi Halduchaur Haldwani Lalkuan Nainital Uttarakhand",
+    "bio": "The One Piece is REAL !!!",
+    "status": "active",
+    "avatarUrl": "https://github.com/MAYANKSHARMA01010.png",
+    "links": {
+      "github": "https://github.com/MAYANKSHARMA01010",
+      "x": "https://x.com/MayankS23610",
+      "linkedin": "https://www.linkedin.com/in/mayanksharma3369",
+      "community": null
+    }
   }
 ]
