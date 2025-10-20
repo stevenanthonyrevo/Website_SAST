@@ -3,10 +3,9 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 // Define available settings with their default values
 const defaultSettings = [
   { id: "notifications", label: "Notifications", enabled: true },
-  { id: "darkMode", label: "Dark Mode", enabled: false },
-  { id: "animations", label: "Animations", enabled: true },
+  { id: "pointerAnimations", label: "Pointer Animations", enabled: true },
   { id: "autoPlay", label: "Auto Play Videos", enabled: true },
-  { id: "soundEffects", label: "Sound Effects", enabled: true },
+  { id: "useLocation", label: "Use location", enabled: true },
 ];
 
 const SettingsContext = createContext();
@@ -116,6 +115,14 @@ export const SettingsProvider = ({ children }) => {
     );
   };
 
+  const setSetting = (settingId, enabled) => {
+    setSettings((prevSettings) =>
+      prevSettings.map((setting) =>
+        setting.id === settingId ? { ...setting, enabled } : setting
+      )
+    );
+  };
+
   const getSetting = (settingId) => {
     const setting = settings.find((s) => s.id === settingId);
     return setting ? setting.enabled : false;
@@ -128,6 +135,7 @@ export const SettingsProvider = ({ children }) => {
   const value = {
     settings,
     toggleSetting,
+    setSetting,
     getSetting,
     resetSettings,
     isLoading,

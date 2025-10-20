@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import AppContent from "./AppContent.jsx";
 import { Toaster, toast } from "react-hot-toast";
-import { SettingsProvider } from "./context/SettingsContex.jsx";
+import { SettingsProvider } from "./context/SettingsContext.jsx";
 
 // Global toast queue for max 3 toasts
 const toastQueue = [];

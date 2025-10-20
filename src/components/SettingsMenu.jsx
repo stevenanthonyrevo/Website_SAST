@@ -1,14 +1,36 @@
 import React, { useState, useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
-import { Cog } from "lucide-react";
 import { useSettings } from "../hooks/UseSettings";
-
+import { Cog } from "lucide-react";
 const SettingsMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { settings, toggleSetting, isLoading } = useSettings();
+  const { settings, toggleSetting, isLoading, setSetting } = useSettings();
+  const [geoPerm, setGeoPerm] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    if (navigator.permissions && navigator.permissions.query) {
+      navigator.permissions
+        .query({ name: "geolocation" })
+        .then((status) => {
+          if (!mounted) return;
+          setGeoPerm(status.state);
+          status.addEventListener("change", () => setGeoPerm(status.state));
+        })
+        .catch(() => {
+          if (!mounted) return;
+          setGeoPerm(null);
+        });
+    } else {
+      setGeoPerm(null);
+    }
+    return () => {
+      mounted = false;
+    };
+  }, []);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
+  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -20,6 +42,7 @@ const SettingsMenu = () => {
         setIsOpen(false);
       }
     };
+
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
       return () =>
@@ -27,8 +50,12 @@ const SettingsMenu = () => {
     }
   }, [isOpen]);
 
+  // Close menu on Escape key
   useEffect(() => {
-    const handleEscape = (event) => event.key === "Escape" && setIsOpen(false);
+    const handleEscape = (event) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
     if (isOpen) {
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
@@ -37,116 +64,138 @@ const SettingsMenu = () => {
 
   if (isLoading) return null;
 
-  return createPortal(
-    <div
-      className="pointer-events-none fixed inset-0 z-[9999]"
-      style={{ isolation: "isolate" }}
-    >
-      <div className="pointer-events-auto fixed bottom-6 right-6">
-        {/* Settings Button */}
-        <button
-          ref={buttonRef}
-          onClick={() => setIsOpen(!isOpen)}
-          className={`
-            w-12 h-12 rounded-full bg-gray-900/90 border border-gray-700/50
-            hover:bg-gray-800/90 hover:border-gray-600/50 
-            flex items-center justify-center
-            transition-all duration-300 ease-in-out
-            backdrop-blur-sm shadow-lg hover:shadow-xl
-            ${isOpen ? "rotate-180 scale-105" : "hover:scale-105"}
-            focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-offset-2 focus:ring-offset-transparent
-          `}
-          aria-label="Settings"
+  return (
+    <div className="fixed bottom-8 right-8 z-50">
+      ]
+      <button
+        ref={buttonRef}
+        onClick={() => setIsOpen(!isOpen)}
+        className={`
+          w-16 h-16 rounded-full
+          bg-black hover:bg-[#111111]
+          border border-[#C4C4C4]
+          flex items-center justify-center
+          shadow-xl hover:shadow-2xl
+          transition-all duration-300 ease-out
+          ${isOpen ? "rotate-90" : ""}
+        `}
+        aria-label="Settings"
+      >
+        <Cog />
+      </button>
+      {/* Settings Menu */}
+      {isOpen && (
+        <div
+          ref={menuRef}
+          className="
+            absolute bottom-20 -right-8
+            w-80 min-h-fit max-w-[calc(100vw-4rem)]
+            bg-black border border-[#C4C4C4]
+            rounded-2xl shadow-2xl
+            overflow-hidden
+            animate-in slide-in-from-bottom-4 fade-in duration-300
+          "
         >
-          <Cog className="w-5 h-5 text-gray-200" />
-        </button>
-
-        {/* Settings Menu */}
-        {isOpen && (
-          <div
-            ref={menuRef}
-            className="
-              absolute bottom-14 right-0 w-80 
-              bg-gray-900/95 backdrop-blur-md border border-gray-700/50
-              rounded-xl shadow-2xl overflow-hidden 
-              transform transition-all duration-300 ease-out
-            "
-            style={{
-              transform: isOpen
-                ? "translateY(0) scale(1)"
-                : "translateY(10px) scale(0.95)",
-              opacity: isOpen ? 1 : 0,
-            }}
-          >
-            {/* Header */}
-            <div className="px-6 py-4 border-b border-gray-700/50 bg-gray-800/30">
-              <h3 className="text-lg font-semibold text-gray-100 mb-1">
-                Settings
-              </h3>
-              <p className="text-sm text-gray-400 leading-relaxed">
-                Configure your preferences
-              </p>
-            </div>
-
-            {/* Settings List */}
-            <div className="py-2">
-              {settings.map((setting, index) => (
-                <div
-                  key={setting.id}
-                  className={`
-                    px-6 py-4 flex items-center justify-between gap-4
-                    hover:bg-gray-800/40 transition-colors duration-200
-                    ${
-                      index !== settings.length - 1
-                        ? "border-b border-gray-800/30"
-                        : ""
-                    }
-                  `}
-                >
-                  <div className="flex-1 min-w-0">
-                    <span className="text-gray-100 font-medium text-sm leading-relaxed block">
-                      {setting.label}
-                    </span>
-                  </div>
-
-                  {/* Toggle Switch */}
-                  <div className="flex-shrink-0">
-                    <button
-                      onClick={() => toggleSetting(setting.id)}
-                      className={`
-                        relative inline-flex flex-shrink-0 h-6 w-12 rounded-full
-                        transition-colors duration-300 ease-in-out focus:outline-none
-                        focus:ring-2 focus:ring-blue-400/50 focus:ring-offset-2 focus:ring-offset-gray-900
-                        ${
-                          setting.enabled
-                            ? "bg-blue-500 hover:bg-blue-600"
-                            : "bg-gray-600 hover:bg-gray-500"
-                        }
-                      `}
-                      aria-label={`Toggle ${setting.label}`}
-                    >
-                      <span
-                        className={`
-                          inline-block h-5 w-5 rounded-full bg-white shadow-lg
-                          transform transition-transform duration-300 ease-in-out
-                          mt-0.5
-                          ${
-                            setting.enabled
-                              ? "translate-x-6"
-                              : "translate-x-0.5"
-                          }
-                        `}
-                      />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+          {/* Header Section */}
+          <div className="p-8 pb-6 border-b-2 bg-black border-slate-500">
+            <h2 className="text-xl font-bold text-white mb-2">Settings</h2>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              Customize your experience
+            </p>
           </div>
-        )}
-      </div>
-    </div>,
-    document.body
+
+          {/* Settings Options */}
+          <div className="p-6 space-y-6">
+            {settings.map((setting, index) => (
+              <div
+                key={setting.id}
+                className="flex items-center justify-between gap-8"
+              >
+                {/* Setting Label */}
+                <div className="flex-1 flex items-center">
+                  <h3 className="text-white font-medium text-base">
+                    {setting.label}
+                  </h3>
+                </div>
+
+                {/* Simple Toggle Switch */}
+                <div className="flex-shrink-0">
+                  <button
+                    onClick={async () => {
+                      // Special handling for useLocation: require permission to turn on
+                      if (setting.id === "useLocation") {
+                        if (setting.enabled) {
+                          setSetting("useLocation", false);
+                          return;
+                        }
+
+                        // If permission is denied, prevent turning on and notify
+                        if (geoPerm === "denied") {
+                          window.showToast?.(
+                            "Location permission denied. Enable it in browser settings.",
+                            "error"
+                          );
+                          setSetting("useLocation", false);
+                          return;
+                        }
+
+                        if (navigator.geolocation) {
+                          navigator.geolocation.getCurrentPosition(
+                            (pos) => {
+                              setSetting("useLocation", true);
+                            },
+                            (err) => {
+                              window.showToast?.(
+                                "Location permission denied.",
+                                "error"
+                              );
+                              setSetting("useLocation", false);
+                            }
+                          );
+                          return;
+                        }
+
+                        // Fallback: just toggle
+                        setSetting("useLocation", true);
+                        return;
+                      }
+
+                      // Default: toggle other settings
+                      toggleSetting(setting.id);
+                    }}
+                    className={`
+                      relative w-14 h-8 rounded-full
+                      transition-colors duration-300 ease-out
+                      focus:outline-none focus:ring-4 focus:ring-blue-500/30
+                      ${
+                        setting.enabled
+                          ? "bg-blue-500 hover:bg-blue-600"
+                          : "bg-slate-600 hover:bg-slate-500"
+                      }
+                      ${
+                        setting.id === "useLocation" && geoPerm === "denied"
+                          ? "opacity-50 cursor-not-allowed"
+                          : ""
+                      }
+                    `}
+                    aria-label={`Toggle ${setting.label}`}
+                  >
+                    {/* Toggle Indicator */}
+                    <div
+                      className={`
+                        absolute top-1 w-6 h-6 bg-white rounded-full
+                        shadow-lg transition-transform duration-300 ease-out
+                        ${setting.enabled ? "translate-x-7" : "translate-x-1"}
+                      `}
+                    />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

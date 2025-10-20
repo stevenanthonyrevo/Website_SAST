@@ -18,6 +18,7 @@ import {
   enterFullscreen,
   exitFullscreen,
 } from "../../utils/satellite/screenUtils";
+import useSettings from "../../hooks/UseSettings";
 
 // --- CONFIG ---
 const interpolationDegree = 7;
@@ -123,10 +124,10 @@ const EarthViewer = ({ loading, setLoading }) => {
       );
     }
   }, []);
-
+  const { settings } = useSettings();
   // If userLocation is set, fly camera there immediately
   useEffect(() => {
-    if (!userLocation) return;
+    if (!userLocation || !settings[3].active) return;
     const viewer = viewerRef.current?.cesiumElement;
     if (viewer && userLocation.lat && userLocation.lon) {
       viewer.camera.flyTo({

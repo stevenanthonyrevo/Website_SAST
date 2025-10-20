@@ -1,4 +1,4 @@
-import { useSettingsContext } from "../context/SettingsContex";
+import { useSettingsContext } from "../context/SettingsContext";
 
 /**
  * Custom hook to use settings throughout the application

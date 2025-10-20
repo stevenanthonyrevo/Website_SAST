@@ -8,12 +8,8 @@ body {
   max-width: 100%;
   box-sizing: border-box;
   scroll-behavior: smooth;
-    cursor: none; /* Hide default cursor */
+  cursor: none; /* Hide default cursor */
 }
-
-
-
-
 
 .header {
   position: fixed;
@@ -66,7 +62,8 @@ body {
 
 @media (max-width: 768px) {
   .main-nav {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background-color: var(--color-background);
     color: var(--color-text);
   }
@@ -81,7 +78,7 @@ body {
 
   .main-nav .nav-links li {
     border-top-left-radius: 10px 10px;
-    padding: .4rem;
+    padding: 0.4rem;
   }
 
   .main-nav {
@@ -180,8 +177,21 @@ body {
 *::before,
 *::after {
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
+}
+
+/* Avoid a global padding reset — allow utility classes (e.g. p-4) to work as expected */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+  padding: 0;
 }
 
 body {
@@ -263,27 +273,22 @@ a {
 }
 
 @media (min-width: 1024px) {
-
-  .space-text{
+  .space-text {
     margin-left: 10rem;
     margin-right: 10rem;
   }
-
 }
 
-
 @media (max-width: 480px) {
-    .space-text {
+  .space-text {
     font-size: clamp(1.5rem, 3vw, 2.8125rem);
     font-weight: bold;
     line-height: 1.3;
     margin-top: 10rem;
-    padding : 1rem;
+    padding: 1rem;
     text-align: center;
   }
 }
-
-
 
 @media (min-width: 769px) {
   .text {
@@ -554,7 +559,6 @@ a {
     padding-left: 10%;
     max-width: 90%;
   }
-  
 }
 
 @media (max-width: 768px) {
@@ -699,7 +703,6 @@ a {
   gap: 4vw;
 
   flex-wrap: wrap;
-
 }
 
 .card {
@@ -713,7 +716,6 @@ a {
   align-items: center;
   padding: 5px;
   gap: 2vh;
-
 }
 
 .alignerevent img {
@@ -857,7 +859,6 @@ a {
     padding-left: 1rem;
     padding: 3rem 0rem;
   }
-
 }
 
 .header {
@@ -1152,7 +1153,6 @@ a {
   }
 }
 
-
 .cursor-star {
   position: absolute;
   width: 4px;
@@ -1187,9 +1187,7 @@ a {
   /* 👇 OFFSET to position slightly behind cursor */
   transform: translate(-70%, -50%);
   animation: sparkleFade 1s ease-out forwards;
-  box-shadow:
-    0 0 4px white,
-    0 0 6px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 4px white, 0 0 6px rgba(255, 255, 255, 0.5);
   opacity: 0.9;
 }
 @keyframes sparkleFade {
@@ -1202,8 +1200,6 @@ a {
     transform: translate(-70%, -50%) scale(0.3); /* keep offset + shrink */
   }
 }
-
-
 
 .hamburger-menu {
   display: flex;
@@ -1221,7 +1217,7 @@ a {
 .hamburger-line {
   width: 2rem;
   height: 0.25rem;
-  background: #FFF;
+  background: #fff;
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
@@ -1278,12 +1274,10 @@ a {
   }
 }
 
-.learn_more
-{
+.learn_more {
   margin-left: 0.5vh;
   margin-top: 1.4vh;
 }
-
 
 .animate-ping-slow {
   animation: ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
@@ -1296,9 +1290,8 @@ a {
   scrollbar-width: none;
 }
 
-.timeline_sast
-{
-   width: 100%;
+.timeline_sast {
+  width: 100%;
   margin-top: 25rem; /* mt-32 = 32 * 0.25rem */
   padding-left: 1rem; /* px-4 = 1rem */
   padding-right: 1rem;
@@ -1308,30 +1301,20 @@ a {
   padding-bottom: 10rem; /* pb-40 = 40 * 0.25rem */
 }
 
-
-
 /* ===== Members route layout fixes (scoped, non-breaking) ===== */
 
 /* Put ONLY the navbar's container back into normal flow */
 .header .container {
-  position: relative;        /* overrides the global `.container { position:absolute }` */
+  position: relative; /* overrides the global `.container { position:absolute }` */
 }
 
 /* Reserve space below the fixed header for routed pages */
 :root {
-  --header-offset: 112px;    /* desktop default; tweak if needed */
+  --header-offset: 112px; /* desktop default; tweak if needed */
 }
 
 @media (max-width: 768px) {
-  :root { --header-offset: 92px; } /* mobile */
-}
-
-/* Your AppContent renders <header class="header" /> then <main> */
-.header + main {
-  padding-top: calc(var(--header-offset) + 16px);
-}
-
-/* If something wraps <main>, this catches it too */
-.header + * main {
-  padding-top: calc(var(--header-offset) + 16px);
+  :root {
+    --header-offset: 92px;
+  } /* mobile */
 }
