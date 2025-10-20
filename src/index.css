@@ -1335,3 +1335,17 @@ a {
 .header + * main {
   padding-top: calc(var(--header-offset) + 16px);
 }
+
+
+/* Unique styling for Nebula navbar button */
+.nebula-link a {
+  color: var(--color-text-secondary);  
+
+  padding: 5px 12px;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.nebula-link a:hover {
+  color: var(--color-text); 
+}
