@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { getMemberBySlug } from "../lib/members/data";
 import { Github, Linkedin, Globe, Twitter } from "lucide-react";
