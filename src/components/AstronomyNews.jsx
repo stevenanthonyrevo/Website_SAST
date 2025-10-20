@@ -1,81 +1,82 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import "../index.css";
 import { fetchAstronomyNews } from "../utils/astronomy-news";
 
 const PAGE_SIZE = 9;
 
 export default function AstronomyNews() {
-  const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
-  const [error, setError] = useState(null);
-  const [offset, setOffset] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
   const seenIds = useRef(new Set());
 
-  const loadInitial = useCallback(() => {
-    setLoading(true);
-    setError(null);
-    setOffset(0);
-    seenIds.current = new Set();
-    fetchAstronomyNews({ limit: PAGE_SIZE, offset: 0 })
-      .then((res) => {
-        if (res.error) setError(res.error);
-        else {
-          setNews(res.news);
-          res.news.forEach((item) => seenIds.current.add(item.id));
-          setHasMore(res.news.length === PAGE_SIZE);
-        }
-        setLoading(false);
-      })
-      .catch(() => {
-        setError("Failed to fetch news.");
-        setLoading(false);
-      });
-  }, []);
+  // Helper to fetch a page by pageParam (offset)
+  const fetchPage = async ({ pageParam = 0 }) => {
+    const res = await fetchAstronomyNews({
+      limit: PAGE_SIZE,
+      offset: pageParam,
+    });
+    if (res.error) throw new Error(res.error);
+    return {
+      articles: res.news,
+      nextOffset: pageParam + res.news.length,
+      total: res.total,
+    };
+  };
+
+  const {
+    data,
+    error,
+    isFetching,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+    refetch,
+  } = useQuery(["astronomyNews"], fetchPage, {
+    getNextPageParam: (lastPage) => {
+      if (!lastPage || lastPage.articles.length < PAGE_SIZE) return undefined;
+      return lastPage.nextOffset;
+    },
+    refetchInterval: 300 * 1000,
+    refetchOnWindowFocus: true,
+    keepPreviousData: true,
+  });
+
+  // Flatten pages into a single array
+  const pages = data?.pages || [];
+  const flattened = useMemo(() => pages.flatMap((p) => p.articles), [pages]);
 
   useEffect(() => {
-    loadInitial();
-  }, [loadInitial]);
+    if (!data) return;
 
+    if (seenIds.current.size === 0) {
+      flattened.forEach((a) => seenIds.current.add(a.id));
+      return;
+    }
+
+    const latestPage = data.pages[0]?.articles || [];
+    const newItems = latestPage.filter((a) => !seenIds.current.has(a.id));
+    if (newItems.length > 0) {
+      newItems.forEach((a) => seenIds.current.add(a.id));
+    }
+  }, [data, flattened]);
+
+  // Infinite scroll handler
   useEffect(() => {
-    if (!hasMore || loadingMore) return;
     const handleScroll = () => {
       if (
         window.innerHeight + window.scrollY >=
-          document.body.offsetHeight - 300 &&
-        !loadingMore &&
-        hasMore
+        document.body.offsetHeight - 300
       ) {
-        setLoadingMore(true);
-        fetchAstronomyNews({ limit: PAGE_SIZE, offset: news.length })
-          .then((res) => {
-            if (res.error) setError(res.error);
-            else {
-              const newArticles = res.news.filter(
-                (item) => !seenIds.current.has(item.id)
-              );
-              newArticles.forEach((item) => seenIds.current.add(item.id));
-              setNews((prev) => [...prev, ...newArticles]);
-              setHasMore(newArticles.length === PAGE_SIZE);
-            }
-            setLoadingMore(false);
-          })
-          .catch(() => {
-            setError("Failed to load more news.");
-            setLoadingMore(false);
-          });
+        if (hasNextPage && !isFetchingNextPage) {
+          fetchNextPage();
+        }
       }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [news.length, hasMore, loadingMore]);
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  const handleRefresh = () => {
-    loadInitial();
-  };
+  const handleRefresh = () => refetch();
 
   return (
     <>
@@ -83,15 +84,15 @@ export default function AstronomyNews() {
         <header className="astronomy-header">
           <h1 className="astronomy-title">Astronomy News</h1>
           <button
-            className={`refresh-button ${loading ? "loading" : ""}`}
+            className={`refresh-button ${isFetching ? "loading" : ""}`}
             onClick={handleRefresh}
-            disabled={loading}
+            disabled={isFetching}
           >
-            {loading ? "Loading..." : "Refresh"}
+            {isFetching ? "Loading..." : "Refresh"}
           </button>
         </header>
 
-        {loading && (
+        {isFetching && flattened.length === 0 && (
           <div className="loading-container">
             <div className="spinner"></div>
           </div>
@@ -99,19 +100,19 @@ export default function AstronomyNews() {
 
         {error && (
           <div className="error-container">
-            <p className="error-message">{error}</p>
+            <p className="error-message">{error.message || String(error)}</p>
           </div>
         )}
 
-        {!loading && !error && news.length === 0 && (
+        {!isFetching && !error && flattened.length === 0 && (
           <div className="empty-state">
             <p>No news articles found.</p>
           </div>
         )}
 
-        {news.length > 0 && (
+        {flattened.length > 0 && (
           <div className="news-grid">
-            {news.map((item) => (
+            {flattened.map((item) => (
               <article
                 key={item.id}
                 className="news-card"
@@ -143,14 +144,14 @@ export default function AstronomyNews() {
           </div>
         )}
 
-        {loadingMore && (
+        {isFetchingNextPage && (
           <div className="loading-more">
             <div className="spinner small"></div>
             <span>Loading more articles...</span>
           </div>
         )}
 
-        {!hasMore && news.length > 0 && (
+        {!hasNextPage && flattened.length > 0 && (
           <div className="end-message">
             <p>You've reached the end of the articles</p>
           </div>
