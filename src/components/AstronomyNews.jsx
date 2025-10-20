@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import { useEffect, useRef, useMemo } from "react";
+import React, { useEffect, useRef, useMemo, useState } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import "../index.css";
 import { fetchAstronomyNews } from "../utils/astronomy-news";
 
@@ -8,6 +9,7 @@ const PAGE_SIZE = 9;
 
 export default function AstronomyNews() {
   const seenIds = useRef(new Set());
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   // Helper to fetch a page by pageParam (offset)
   const fetchPage = async ({ pageParam = 0 }) => {
@@ -31,14 +33,14 @@ export default function AstronomyNews() {
     fetchNextPage,
     hasNextPage,
     refetch,
-  } = useQuery(["astronomyNews"], fetchPage, {
+  } = useInfiniteQuery({
+    queryKey: ["astronomyNews"],
+    queryFn: fetchPage,
     getNextPageParam: (lastPage) => {
       if (!lastPage || lastPage.articles.length < PAGE_SIZE) return undefined;
       return lastPage.nextOffset;
     },
-    refetchInterval: 300 * 1000,
-    refetchOnWindowFocus: true,
-    keepPreviousData: true,
+    initialPageParam: 0,
   });
 
   // Flatten pages into a single array
@@ -63,10 +65,15 @@ export default function AstronomyNews() {
   // Infinite scroll handler
   useEffect(() => {
     const handleScroll = () => {
-      if (
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 300
-      ) {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      // Show scroll-to-top button when user has scrolled down at least 500px
+      // This is much more sensitive for testing
+      setShowScrollToTop(scrollPosition > 500);
+
+      // Infinite scroll logic
+      if (windowHeight + scrollPosition >= document.body.offsetHeight - 300) {
         if (hasNextPage && !isFetchingNextPage) {
           fetchNextPage();
         }
@@ -77,6 +84,14 @@ export default function AstronomyNews() {
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   const handleRefresh = () => refetch();
+
+  const scrollToTop = () => {
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { duration: 1 });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   return (
     <>
@@ -157,6 +172,34 @@ export default function AstronomyNews() {
           </div>
         )}
       </div>
+
+      {/* Scroll to Top Button */}
+      <button
+        className={`fixed bottom-8 right-8 w-14 h-14 md:w-12 md:h-12 bg-white/10 border border-white/20 rounded-full text-white cursor-pointer flex items-center justify-center z-[1000] backdrop-blur-md shadow-lg transition-all duration-300 ease-out ${
+          showScrollToTop
+            ? "opacity-100 visible translate-y-0"
+            : "opacity-0 invisible translate-y-5"
+        } hover:bg-white/15 hover:border-white/30 hover:-translate-y-1 hover:shadow-xl`}
+        onClick={scrollToTop}
+        aria-label="Scroll to top"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="transition-transform duration-200 ease-out hover:-translate-y-0.5"
+        >
+          <path
+            d="M12 19V5M5 12L12 5L19 12"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
     </>
   );
 }
