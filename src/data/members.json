@@ -13,5 +13,21 @@
       "linkedin": "https://www.linkedin.com/in/",
       "community": "https://www.linkedin.com/company/society-for-aerospace-and-space-technology/?viewAsMember=true"
     }
+  },
+
+   {
+    "slug": "neelanshu-karn",
+    "name": "Neelanshu Karn",
+    "role": "Frontend Developer",
+    "location": "India",
+    "bio": "I am passionate about open source and building web apps.",
+    "status": "active",
+    "avatarUrl": "/images/members/neelanshu.jpg",
+    "links": {
+      "github": "https://github.com/neelanshu",
+      "x": "https://twitter.com/neelanshu",
+      "linkedin": "https://linkedin.com/in/neelanshu",
+      "community": ""
+    }
   }
 ]
