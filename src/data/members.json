@@ -1,0 +1,48 @@
+[
+  {
+    "slug": "kavya-katal",
+    "name": "Kavya Katal",
+    "role": "Contributor",
+    "location": "Faridabad, Haryana, India",
+    "bio": "Passionate Full Stack Developer and AI enthusiast exploring the intersection of Open Source, Cloud Native, and Web Technologies. I enjoy contributing to developer communities, building scalable solutions, and continuously learning to create impactful, innovative systems.",
+    "status": "active",
+    "avatarUrl": "https://github.com/KatalKavya96.png",
+    "links": {
+      "github": "https://github.com/KatalKavya96",
+      "x": "https://x.com/",
+      "linkedin": "https://www.linkedin.com/in/",
+      "community": "https://www.linkedin.com/company/society-for-aerospace-and-space-technology/?viewAsMember=true"
+    }
+  },
+  {
+    
+    "slug": "mayank-sharma",
+    "name": "Mayank Sharma",
+    "role": "Member",
+    "location": "Village Jaggi Halduchaur Haldwani Lalkuan Nainital Uttarakhand",
+    "bio": "The One Piece is REAL !!!",
+    "status": "active",
+    "avatarUrl": "https://github.com/MAYANKSHARMA01010.png",
+    "links": {
+      "github": "https://github.com/MAYANKSHARMA01010",
+      "x": "https://x.com/MayankS23610",
+      "linkedin": "https://www.linkedin.com/in/mayanksharma3369",
+      "community": null
+    }
+  },
+  {
+    "slug": "prataya-silla",
+    "name": "Prataya Silla  ",
+    "role": "Member",
+    "location": "Rayagada, Odisha",
+    "bio": "🚀 Passionate about building scalable web applications and creative digital experiences.🎯 Currently diving deeper into backend development, open-source contributions, and real-world freelance projects.📹 Also working with motion graphics and video editing to build a strong, creative portfolio.",
+    "status": "active",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/185405536?v=4",
+    "links": {
+      "github": "https://github.com/PratayaSilla",
+      "x": "https://x.com/proprataya",
+      "linkedin": "https://www.linkedin.com/in/pratayasilla/",
+      "community": null
+    }
+  }
+]

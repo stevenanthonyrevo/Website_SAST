@@ -1309,3 +1309,29 @@ a {
 }
 
 
+
+/* ===== Members route layout fixes (scoped, non-breaking) ===== */
+
+/* Put ONLY the navbar's container back into normal flow */
+.header .container {
+  position: relative;        /* overrides the global `.container { position:absolute }` */
+}
+
+/* Reserve space below the fixed header for routed pages */
+:root {
+  --header-offset: 112px;    /* desktop default; tweak if needed */
+}
+
+@media (max-width: 768px) {
+  :root { --header-offset: 92px; } /* mobile */
+}
+
+/* Your AppContent renders <header class="header" /> then <main> */
+.header + main {
+  padding-top: calc(var(--header-offset) + 16px);
+}
+
+/* If something wraps <main>, this catches it too */
+.header + * main {
+  padding-top: calc(var(--header-offset) + 16px);
+}
