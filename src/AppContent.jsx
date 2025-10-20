@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar.jsx";
 import Newsletter from "./components/Newsletter.jsx";
 import Events from "./components/Events.jsx";
 import Projects from "./components/Projects.jsx";
-import Team from "./components/Team.jsx";
 import Store from "./components/Store.jsx";
 import ContributionRanks from "./pages/ContributionRanks.jsx";
 import CursorEffects from "./components/CursorEffects.jsx";
@@ -19,6 +18,8 @@ import Register from "./pages/register.jsx";
 import Login from "./pages/login.jsx";
 import Footer from "./components/footer.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import Members from "./pages/Members.jsx";
+import MemberProfile from "./pages/MemberProfile.jsx";
 
 import { Ion } from "cesium";
 Ion.defaultAccessToken = import.meta.env.VITE_CESIUM_TOKEN;
@@ -36,20 +37,23 @@ const AppContent = () => {
 
       {!hideNavbarRoutes.includes(location.pathname) && <Navbar />}
 
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/newsletter" element={<Newsletter />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/team" element={<Team />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/merch" element={<Store />} />
-        <Route path="/contributions" element={<ContributionRanks />} />
-        <Route path="/news" element={<AstronomyNews />} />
-        <Route path="/track" element={<SatelliteTracker />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/footer" element={<Footer />} />
-      </Routes>
+      <main className="pt-44 md:pt-56 px-0">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/newsletter" element={<Newsletter />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/merch" element={<Store />} />
+          <Route path="/contributions" element={<ContributionRanks />} />
+          <Route path="/news" element={<AstronomyNews />} />
+          <Route path="/track" element={<SatelliteTracker />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/footer" element={<Footer />} />
+          <Route path="/community/members" element={<Members />} />
+          <Route path="/community/members/:slug" element={<MemberProfile />} />
+        </Routes>
+      </main>
     </>
   );
 };
