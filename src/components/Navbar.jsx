@@ -70,6 +70,9 @@ const Navbar = () => {
                   Members
                 </Link>
               </li>
+              <li>
+                <Link to="/Register">Register</Link>
+              </li>
 
               <li><a href="/news">Astronomy News</a></li>
               <li><a href="/track">Track</a></li>

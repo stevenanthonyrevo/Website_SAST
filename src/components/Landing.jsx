@@ -158,7 +158,7 @@ const Landing = () => {
         </section>
 
         <hr className="vbar opacity-20" />
-        <section className="hero-section min-h-[70vh] py-20">
+        <section className="hero-section py-12 md:py-20 min-h-[auto] md:min-h-[70vh] flex flex-col justify-center">
           <div className="video-container">
             <video autoPlay muted loop playsInline className="bg-video">
               <source src={videosource2} type="video/mp4" />
@@ -179,7 +179,7 @@ const Landing = () => {
         </section>
         <hr className="vbar opacity-20" />
 
-        <section className="hero-section min-h-[70vh] py-20">
+        <section className="hero-section py-12 md:py-20 min-h-[auto] md:min-h-[70vh] flex flex-col justify-center">
           <div className="video-container">
             <video autoPlay muted loop playsInline className="bg-video">
               <source src={videosource3} type="video/mp4" />
@@ -197,7 +197,7 @@ const Landing = () => {
         </section>
         <hr className="vbar opacity-20" />
 
-        <section className="hero-section min-h-[70vh] py-20">
+        <section className="hero-section py-12 md:py-20 min-h-[auto] md:min-h-[70vh] flex flex-col justify-center">
           <div className="video-container">
             <video autoPlay muted loop playsInline className="bg-video">
               <source src={videosource4} type="video/mp4" />
@@ -242,7 +242,7 @@ const Landing = () => {
         <br />
         <br />
         {/*optimizing this for mobile users*/}
-        <form className="w-full md:h-60 m-5" style={{ padding: "20px" }}>
+      <form className="w-full pb-16 m-5" style={{ padding: "20px" }}>
           <div className="news flex flex-col md:flex-row justify-evenly gap-8">
             <div className="flex flex-col gap-8" style={{ margin: "10px" }}>
               <div className="text-2xl md:text-4xl font-bold md:w-150 w-fit md:text-start text-center">
