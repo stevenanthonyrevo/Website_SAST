@@ -15,7 +15,21 @@
     }
   },
   {
-    
+    "slug": "neelanshu-karn",
+    "name": "Neelanshu Karn",
+    "role": "Frontend Developer",
+    "location": "Prayagraj, Uttar Pradesh",
+    "bio": "President SAST, Tech Leader - Leads Innovation through Technology",
+    "status": "active",
+    "avatarUrl": "/images/members/neelanshu.jpg",
+    "links": {
+      "github": "https://github.com/karn-cyber",
+      "x": "",
+      "linkedin": "https://www.linkedin.com/in/neelanshu-karn-05146130a/?originalSubdomain=in",
+      "community": ""
+    }
+  },
+  {
     "slug": "mayank-sharma",
     "name": "Mayank Sharma",
     "role": "Member",
@@ -32,7 +46,7 @@
   },
   {
     "slug": "prataya-silla",
-    "name": "Prataya Silla  ",
+    "name": "Prataya Silla",
     "role": "Member",
     "location": "Rayagada, Odisha",
     "bio": "🚀 Passionate about building scalable web applications and creative digital experiences.🎯 Currently diving deeper into backend development, open-source contributions, and real-world freelance projects.📹 Also working with motion graphics and video editing to build a strong, creative portfolio.",
