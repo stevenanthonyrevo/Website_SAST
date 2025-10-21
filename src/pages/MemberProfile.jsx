@@ -1,8 +1,8 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { getMemberBySlug } from "../lib/members/data";
 import { Github, Linkedin, Globe, Twitter } from "lucide-react";
-import PropTypes from "prop-types";
 
 /* ---------- Social Icons ---------- */
 function SocialIcons({ m }) {
@@ -34,23 +34,6 @@ function SocialIcons({ m }) {
     </div>
   );
 }
-
-const memberShape = PropTypes.shape({
-  slug: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  role: PropTypes.string,
-  location: PropTypes.string,
-  bio: PropTypes.string,
-  avatarUrl: PropTypes.string,
-  links: PropTypes.shape({
-    github: PropTypes.string,
-    x: PropTypes.string,
-    linkedin: PropTypes.string,
-    community: PropTypes.string,
-  }),
-});
-
-SocialIcons.propTypes = { m: memberShape.isRequired };
 
 /* ---------- Page ---------- */
 export default function MemberProfile() {
