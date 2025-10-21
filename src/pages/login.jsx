@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import Footer from "../components/footer";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Rocket, LogIn } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "../main.jsx";
 import { BASE_URL } from "../api";
 
 export default function Login() {
-  const [method, setMethod] = useState("email"); // email | phone
+  const [method, setMethod] = useState("email");
   const [showPassword, setShowPassword] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -19,13 +19,13 @@ export default function Login() {
     phone: "",
   });
 
-  // Email validation
-  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
-  // Phone validation (basic: 10 digits)
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isValidPhone = (phone) => /^[0-9]{10}$/.test(phone);
 
-  // Handle Login
   const handleLogin = async () => {
     try {
       if (method === "email") {
@@ -78,179 +78,425 @@ export default function Login() {
     }
   };
 
+  const starPositions = React.useMemo(() => {
+    return Array.from({ length: 30 }, () => ({
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+    }));
+  }, []);
+
   return (
     <>
       <style>{`
-        @keyframes subtle-glow {
-          0%, 100% {
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(40px);
           }
-          50% {
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+          to {
+            opacity: 1;
+            transform: translateY(0);
           }
         }
 
-        .space-bg {
-          background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-          position: relative;
+        .fade-in-up {
+          animation: fadeInUp 1s ease-out;
+        }
+
+        .space-container {
+          min-height: 100vh;
+          background: #000;
+          color: #fff;
           overflow: hidden;
+          position: relative;
         }
 
-        .stars {
+        .space-bg-layer {
+          position: fixed;
+          inset: 0;
+          z-index: 0;
+        }
+
+        .gradient-layer {
           position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, #000 50%, rgba(88, 28, 135, 0.2) 100%);
+        }
+
+        .radial-layer {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at 50% 50%, rgba(0,161,255,0.1), transparent 50%);
         }
 
         .star {
           position: absolute;
-          width: 1px;
-          height: 1px;
-          background: white;
+          width: 2px;
+          height: 2px;
+          background: #60a5fa;
           border-radius: 50%;
           opacity: 0.6;
         }
 
-        .neon-border {
-          border: 2px solid rgba(0, 255, 255, 0.6);
-          animation: subtle-glow 3s ease-in-out infinite;
+        .content-wrapper {
+          position: relative;
+          z-index: 10;
         }
 
-        .glass-effect {
-          background: rgba(17, 25, 40, 0.85);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+        .login-card {
+          background: rgba(255,255,255,0.05);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 24px;
+          padding: 48px;
+          transition: all 0.3s;
+        }
+
+        .login-card:hover {
+          border-color: rgba(59,130,246,0.3);
+          box-shadow: 0 10px 40px rgba(59,130,246,0.2);
+        }
+
+        .input-field {
+          width: 100%;
+          padding: 16px;
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 16px;
+          color: #fff;
+          font-size: 16px;
+          outline: none;
+          transition: all 0.3s;
+        }
+
+        .input-field:focus {
+          border-color: rgba(59,130,246,0.5);
+          background: rgba(255,255,255,0.08);
+        }
+
+        .input-field::placeholder {
+          color: #9ca3af;
+        }
+
+        .btn-primary {
+          width: 100%;
+          background: linear-gradient(90deg, #3b82f6 0%, #6366f1 100%);
+          color: #fff;
+          font-weight: 700;
+          font-size: 18px;
+          padding: 16px;
+          border: none;
+          border-radius: 16px;
+          cursor: pointer;
+          transition: all 0.3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 30px rgba(59,130,246,0.4);
+        }
+
+        .btn-primary:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        .method-toggle {
+          display: flex;
+          background: rgba(255,255,255,0.05);
+          border-radius: 16px;
+          padding: 4px;
+          gap: 4px;
+        }
+
+        .method-btn {
+          flex: 1;
+          padding: 12px;
+          border: none;
+          border-radius: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s;
+          background: transparent;
+          color: #d1d5db;
+        }
+
+        .method-btn.active {
+          background: linear-gradient(90deg, #3b82f6 0%, #6366f1 100%);
+          color: #fff;
+          box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+        }
+
+        .badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: rgba(59,130,246,0.1);
+          border: 1px solid rgba(59,130,246,0.2);
+          border-radius: 50px;
+          padding: 8px 16px;
+          margin-bottom: 24px;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .spinner {
+          width: 20px;
+          height: 20px;
+          border: 2px solid rgba(255,255,255,0.2);
+          border-top: 2px solid #fff;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
         }
       `}</style>
 
       <Navbar />
-      <div className="min-h-screen flex justify-center items-center space-bg p-4 transition-colors duration-300">
-        {/* Stars Background */}
-        <div className="stars">
-          {[...Array(30)].map((_, i) => (
+
+      <div className="space-container">
+        {/* Animated Background */}
+        <div className="space-bg-layer">
+          <div className="gradient-layer"></div>
+          <div className="radial-layer"></div>
+          {starPositions.map((star, i) => (
             <div
               key={i}
               className="star"
               style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`
+                left: `${star.left}%`,
+                top: `${star.top}%`,
               }}
             />
           ))}
         </div>
 
-        <div className="w-full max-w-md glass-effect neon-border shadow-2xl rounded-2xl p-8 z-10 relative">
-          <h2 className="text-3xl font-bold mb-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-            Login
-          </h2>
-
-          {/* Switch between Email / Phone */}
-          <div className="flex mb-6 bg-gray-900/50 rounded-lg p-1 border border-cyan-500/30">
-            <button
-              onClick={() => setMethod("email")}
-              className={`flex-1 py-2 rounded-lg font-medium transition-all duration-200 ${
-                method === "email"
-                  ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/50"
-                  : "text-gray-300 hover:bg-gray-800/50"
-              }`}
-            >
-              Email
-            </button>
-            <button
-              onClick={() => 
-                showToast("Phone login is not implemented yet.", "error")
-              }
-              className={`flex-1 py-2 rounded-lg font-medium transition-all duration-200 ${
-                method === "phone"
-                  ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/50"
-                  : "text-gray-300 hover:bg-gray-800/50"
-              }`}
-            >
-              Phone
-            </button>
-          </div>
-
-          {/* Email Login */}
-          {method === "email" && (
-            <>
-              <input
-                type="email"
-                className="w-full p-3 border border-cyan-500/50 rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-gray-900/50 text-gray-100 placeholder-gray-500"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-              />
-            </>
-          )}
-
-          {/* Phone Login */}
-          {method === "phone" && (
-            <>
-              <input
-                type="text"
-                className="w-full p-3 border border-cyan-500/50 rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-gray-900/50 text-gray-100 placeholder-gray-500"
-                placeholder="Enter your phone number"
-                value={formData.phone}
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: e.target.value })
-                }
-              />
-            </>
-          )}
-
-          {/* Password Input */}
-          <div className="relative mb-6">
-            <input
-              type={showPassword ? "text" : "password"}
-              className="w-full p-3 border border-cyan-500/50 rounded-lg bg-gray-900/50 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-              placeholder="Password"
-              value={formData.password}
-              onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
-            />
-            <button
-              type="button"
-              className="absolute right-3 top-3 text-cyan-400 hover:text-cyan-300"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
-          </div>
-
-          <button
-            className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-3 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 disabled:opacity-50 flex justify-center items-center gap-2 shadow-lg shadow-cyan-500/50 transition-all duration-300"
-            onClick={handleLogin}
-            disabled={loader}
+        {/* Content */}
+        <div className="content-wrapper">
+          <div
+            style={{
+              minHeight: "100vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "24px",
+              paddingTop: "120px",
+              paddingBottom: "80px",
+            }}
           >
-            {loader ? (
-              <>
-                <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                Logging in...
-              </>
-            ) : (
-              "Login"
-            )}
-          </button>
-
-          <p className="mt-6 text-center text-gray-400">
-            Don't have an account?{" "}
-            <a
-              onClick={() => navigate("/register")}
-              className="text-cyan-400 hover:underline cursor-pointer"
+            <div
+              className="fade-in-up"
+              style={{
+                width: "100%",
+                maxWidth: "480px",
+              }}
             >
-              <span className="hover:text-cyan-300 hover:underline">
-                Register
-              </span>
-            </a>
-          </p>
+              {/* Badge */}
+              <div style={{ textAlign: "center" }}>
+                <div className="badge">
+                  <Rocket style={{ width: 16, height: 16, color: "#60a5fa" }} />
+                  <span style={{ color: "#93c5fd", fontSize: 14, fontWeight: 500 }}>
+                    SAST Portal Access
+                  </span>
+                </div>
+              </div>
+
+              {/* Title */}
+              <h1
+                style={{
+                  fontSize: "48px",
+                  fontWeight: 700,
+                  marginBottom: "16px",
+                  background: "linear-gradient(to right, #fff, #dbeafe, #93c5fd)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  textAlign: "center",
+                  lineHeight: 1.1,
+                }}
+              >
+                Welcome Back
+              </h1>
+              <p
+                style={{
+                  color: "#d1d5db",
+                  textAlign: "center",
+                  marginBottom: "48px",
+                  fontSize: "18px",
+                }}
+              >
+                Login to access your space exploration dashboard
+              </p>
+
+              {/* Login Card */}
+              <div className="login-card">
+                {/* Method Toggle */}
+                <div className="method-toggle" style={{ marginBottom: "32px" }}>
+                  <button
+                    onClick={() => setMethod("email")}
+                    className={`method-btn ${method === "email" ? "active" : ""}`}
+                  >
+                    Email
+                  </button>
+                  <button
+                    onClick={() => 
+                      showToast("Phone login is not implemented yet.", "error")
+                    }
+                    className={`method-btn ${method === "phone" ? "active" : ""}`}
+                  >
+                    Phone
+                  </button>
+                </div>
+
+                {/* Email Input */}
+                {method === "email" && (
+                  <div style={{ marginBottom: "24px" }}>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "14px",
+                        fontWeight: 600,
+                        color: "#d1d5db",
+                        marginBottom: "12px",
+                      }}
+                    >
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      className="input-field"
+                      placeholder="Enter your email"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                    />
+                  </div>
+                )}
+
+                {/* Phone Input */}
+                {method === "phone" && (
+                  <div style={{ marginBottom: "24px" }}>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "14px",
+                        fontWeight: 600,
+                        color: "#d1d5db",
+                        marginBottom: "12px",
+                      }}
+                    >
+                      Phone Number
+                    </label>
+                    <input
+                      type="text"
+                      className="input-field"
+                      placeholder="Enter your phone number"
+                      value={formData.phone}
+                      onChange={(e) =>
+                        setFormData({ ...formData, phone: e.target.value })
+                      }
+                    />
+                  </div>
+                )}
+
+                {/* Password Input */}
+                <div style={{ marginBottom: "32px" }}>
+                  <label
+                    style={{
+                      display: "block",
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      color: "#d1d5db",
+                      marginBottom: "12px",
+                    }}
+                  >
+                    Password
+                  </label>
+                  <div style={{ position: "relative" }}>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      className="input-field"
+                      placeholder="Enter your password"
+                      value={formData.password}
+                      onChange={(e) =>
+                        setFormData({ ...formData, password: e.target.value })
+                      }
+                      style={{ paddingRight: "48px" }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      style={{
+                        position: "absolute",
+                        right: "16px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        background: "none",
+                        border: "none",
+                        color: "#60a5fa",
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Login Button */}
+                <button
+                  className="btn-primary"
+                  onClick={handleLogin}
+                  disabled={loader}
+                >
+                  {loader ? (
+                    <>
+                      <div className="spinner"></div>
+                      Logging in...
+                    </>
+                  ) : (
+                    <>
+                      <LogIn size={20} />
+                      Login
+                    </>
+                  )}
+                </button>
+
+                {/* Register Link */}
+                <p
+                  style={{
+                    marginTop: "32px",
+                    textAlign: "center",
+                    color: "#9ca3af",
+                    fontSize: "16px",
+                  }}
+                >
+                  Don't have an account?{" "}
+                  <span
+                    onClick={() => navigate("/register")}
+                    style={{
+                      color: "#60a5fa",
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      transition: "color 0.3s",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "#93c5fd")}
+                    onMouseLeave={(e) => (e.target.style.color = "#60a5fa")}
+                  >
+                    Register here
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
