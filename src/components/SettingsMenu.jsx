@@ -66,7 +66,6 @@ const SettingsMenu = () => {
 
   return (
     <div className="fixed bottom-8 right-8 z-50">
-      ]
       <button
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
@@ -88,7 +87,7 @@ const SettingsMenu = () => {
         <div
           ref={menuRef}
           className="
-            absolute bottom-20 -right-8
+            absolute bottom-20 right-10
             w-80 min-h-fit max-w-[calc(100vw-4rem)]
             bg-black border border-[#C4C4C4]
             rounded-2xl shadow-2xl
