@@ -1,5 +1,19 @@
 [
   {
+    "slug": "abhinav-bajpai",
+    "name": "Abhinav Bajpai",
+    "role": "Member",
+    "bio": "do this change needed",
+    "status": "active",
+    "avatarUrl": "https://github.com/abhinavbajpai30.png",
+    "links": {
+      "github": "https://github.com/abhinavbajpai30",
+      "x": "https://x.com/abhinavbajpai30",
+      "linkedin": "https://www.linkedin.com/in/abhinavbajpai30/",
+      "community": null
+    }
+  },
+  {
     "slug": "kavya-katal",
     "name": "Kavya Katal",
     "role": "Contributor",
