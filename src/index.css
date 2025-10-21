@@ -1339,13 +1339,16 @@ a {
 
 /* Unique styling for Nebula navbar button */
 .nebula-link a {
-  color: var(--color-text-secondary);  
-
-  padding: 5px 12px;
+  /* color: var(--color-text-secondary);   */
+  color: #ff6f61;     
+  padding: 6px 14px;
   border-radius: 6px;
   transition: all 0.3s;
+  text-decoration: none;
+  
 }
 
 .nebula-link a:hover {
   color: var(--color-text); 
+  transform: translateY(-1px);
 }
