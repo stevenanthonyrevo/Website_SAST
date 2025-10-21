@@ -81,32 +81,13 @@ export default function Login() {
   return (
     <>
       <style>{`
-        @keyframes shooting-star {
-          0% {
-            transform: translateX(0) translateY(0) rotate(-45deg);
-            opacity: 1;
-          }
-          70% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateX(-1000px) translateY(1000px) rotate(-45deg);
-            opacity: 0;
-          }
-        }
-
-        @keyframes neon-glow {
+        @keyframes subtle-glow {
           0%, 100% {
-            box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
           }
           50% {
-            box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 80px #00ffff, 0 0 120px #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
           }
-        }
-
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 1; }
         }
 
         .space-bg {
@@ -125,41 +106,22 @@ export default function Login() {
 
         .star {
           position: absolute;
-          width: 2px;
-          height: 2px;
+          width: 1px;
+          height: 1px;
           background: white;
           border-radius: 50%;
-          animation: twinkle 3s infinite;
-        }
-
-        .shooting-star {
-          position: absolute;
-          width: 2px;
-          height: 2px;
-          background: linear-gradient(90deg, #fff, transparent);
-          border-radius: 50%;
-          animation: shooting-star 3s linear infinite;
-        }
-
-        .shooting-star::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 100px;
-          height: 2px;
-          background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+          opacity: 0.6;
         }
 
         .neon-border {
-          border: 2px solid #00ffff;
-          animation: neon-glow 2s ease-in-out infinite;
+          border: 2px solid rgba(0, 255, 255, 0.6);
+          animation: subtle-glow 3s ease-in-out infinite;
         }
 
         .glass-effect {
-          background: rgba(17, 25, 40, 0.75);
-          backdrop-filter: blur(16px);
-          border: 1px solid rgba(255, 255, 255, 0.125);
+          background: rgba(17, 25, 40, 0.85);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
         }
       `}</style>
 
@@ -167,27 +129,13 @@ export default function Login() {
       <div className="min-h-screen flex justify-center items-center space-bg p-4 transition-colors duration-300">
         {/* Stars Background */}
         <div className="stars">
-          {[...Array(50)].map((_, i) => (
+          {[...Array(30)].map((_, i) => (
             <div
               key={i}
               className="star"
               style={{
                 top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 3}s`
-              }}
-            />
-          ))}
-          {[...Array(5)].map((_, i) => (
-            <div
-              key={`shooting-${i}`}
-              className="shooting-star"
-              style={{
-                top: `${Math.random() * 50}%`,
-                left: `${100 + Math.random() * 10}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${2 + Math.random() * 2}s`
+                left: `${Math.random() * 100}%`
               }}
             />
           ))}
