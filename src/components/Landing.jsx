@@ -12,6 +12,7 @@ import img2 from "../Landing_media/frequent_lines.webp";
 import helmet_png from "../Landing_media/helm.jpg";
 import Footer from "./footer";
 import useLenis from "../utils/lenis";
+import useSettings from "../hooks/UseSettings";
 
 const Landing = () => {
   useLenis();
@@ -72,13 +73,33 @@ const Landing = () => {
       }
     };
   }, []);
+  const { settings } = useSettings();
+  const play = settings[2].enabled;
 
+  // React to changes in autoPlay setting: play or pause all videos on the page
+  useEffect(() => {
+    const videos = Array.from(document.querySelectorAll("video"));
+    if (play) {
+      videos.forEach((v) => {
+        // attempt to play; ignore returned promise
+        try {
+          v.play().catch(() => {});
+        } catch (e) {}
+      });
+    } else {
+      videos.forEach((v) => {
+        try {
+          v.pause();
+        } catch (e) {}
+      });
+    }
+  }, [play]);
   return (
     <>
       <main>
         <section className="hero">
           <div className="black_space">
-            <video autoPlay loop muted playsInline>
+            <video autoPlay={play} loop muted playsInline>
               <source src={videosource5} type="video/mp4" />
             </video>
           </div>
@@ -98,7 +119,7 @@ const Landing = () => {
 
         <section className="video-section">
           <div className="video">
-            <video id="myVideo" loop autoPlay muted playsInline>
+            <video id="myVideo" loop autoPlay={play} muted playsInline>
               <source src={videoSource} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
@@ -160,7 +181,7 @@ const Landing = () => {
         <hr className="vbar opacity-20" />
         <section className="hero-section py-12 md:py-20 min-h-[auto] md:min-h-[70vh] flex flex-col justify-center">
           <div className="video-container">
-            <video autoPlay muted loop playsInline className="bg-video">
+            <video autoPlay={play} muted loop playsInline className="bg-video">
               <source src={videosource2} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
@@ -181,7 +202,7 @@ const Landing = () => {
 
         <section className="hero-section py-12 md:py-20 min-h-[auto] md:min-h-[70vh] flex flex-col justify-center">
           <div className="video-container">
-            <video autoPlay muted loop playsInline className="bg-video">
+            <video autoPlay={play} muted loop playsInline className="bg-video">
               <source src={videosource3} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
@@ -199,7 +220,7 @@ const Landing = () => {
 
         <section className="hero-section py-12 md:py-20 min-h-[auto] md:min-h-[70vh] flex flex-col justify-center">
           <div className="video-container">
-            <video autoPlay muted loop playsInline className="bg-video">
+            <video autoPlay={play} muted loop playsInline className="bg-video">
               <source src={videosource4} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
@@ -242,7 +263,7 @@ const Landing = () => {
         <br />
         <br />
         {/*optimizing this for mobile users*/}
-      <form className="w-full pb-16 m-5" style={{ padding: "20px" }}>
+        <form className="w-full pb-16 m-5" style={{ padding: "20px" }}>
           <div className="news flex flex-col md:flex-row justify-evenly gap-8">
             <div className="flex flex-col gap-8" style={{ margin: "10px" }}>
               <div className="text-2xl md:text-4xl font-bold md:w-150 w-fit md:text-start text-center">
