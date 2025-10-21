@@ -70,6 +70,15 @@ const Navbar = () => {
                   Members
                 </Link>
               </li>
+
+               <li className="nebula-link">
+                <a href="https://nebula.sastclub.tech/" target="_blank" rel="noopener noreferrer">
+                  Nebula
+                </a>
+              </li>
+
+              
+
               <li><a href="/news">Astronomy News</a></li>
               <li><a href="/track">Track</a></li>
               <li><Link to="/Register">Register</Link></li>
