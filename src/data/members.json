@@ -28,6 +28,35 @@
       "x": "",
       "linkedin": "https://www.linkedin.com/in/neelanshu-karn-05146130a/?originalSubdomain=in",
       "community": ""
+  {
+    
+    "slug": "mayank-sharma",
+    "name": "Mayank Sharma",
+    "role": "Member",
+    "location": "Village Jaggi Halduchaur Haldwani Lalkuan Nainital Uttarakhand",
+    "bio": "The One Piece is REAL !!!",
+    "status": "active",
+    "avatarUrl": "https://github.com/MAYANKSHARMA01010.png",
+    "links": {
+      "github": "https://github.com/MAYANKSHARMA01010",
+      "x": "https://x.com/MayankS23610",
+      "linkedin": "https://www.linkedin.com/in/mayanksharma3369",
+      "community": null
+    }
+  },
+  {
+    "slug": "prataya-silla",
+    "name": "Prataya Silla  ",
+    "role": "Member",
+    "location": "Rayagada, Odisha",
+    "bio": "🚀 Passionate about building scalable web applications and creative digital experiences.🎯 Currently diving deeper into backend development, open-source contributions, and real-world freelance projects.📹 Also working with motion graphics and video editing to build a strong, creative portfolio.",
+    "status": "active",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/185405536?v=4",
+    "links": {
+      "github": "https://github.com/PratayaSilla",
+      "x": "https://x.com/proprataya",
+      "linkedin": "https://www.linkedin.com/in/pratayasilla/",
+      "community": null
     }
   }
 ]
