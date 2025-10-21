@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import AppContent from "./AppContent.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster, toast } from "react-hot-toast";
+import { SettingsProvider } from "./context/SettingsContext.jsx";
 
 // Global toast queue for max 3 toasts
 const toastQueue = [];
@@ -27,6 +28,7 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Router>
     <QueryClientProvider client={queryClient}>
+    <SettingsProvider>
       {/* Global Toaster */}
       <Toaster
         position="top-center"
@@ -42,6 +44,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         }}
       />
       <AppContent />
-    </QueryClientProvider>
-  </Router>
+    </SettingsProvider>
+</QueryClientProvider>  
+</Router>
 );
