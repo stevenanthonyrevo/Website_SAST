@@ -58,5 +58,19 @@
       "linkedin": "https://www.linkedin.com/in/pratayasilla/",
       "community": null
     }
+  },
+  {
+    "slug": "rudra-pratap-singh-choudhary",
+    "name": "Rudra Pratap Singh Choudhary",
+    "role": "Member",
+    "location": "Neemuch, Madhya Pradesh, India",
+    "bio": "Hi, I am one of the founding member of SAST with expertise in astronomy, I am volunteer at Aryabhat foundation and participated and conducted various national level astronomy quizzes.",
+    "status": "active",
+    "avatarUrl": "https://i.postimg.cc/z3YZjVtN/rps.jpg",
+    "links": {
+      "github": "https://github.com/Rudra-choudhary",
+      "linkedin": "https://www.linkedin.com/in/rudra-choudhary-b27b41306/",
+      "community": null
+    }
   }
 ]
