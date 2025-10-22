@@ -20,8 +20,9 @@ import Footer from "./components/footer.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Members from "./pages/Members.jsx";
 import MemberProfile from "./pages/MemberProfile.jsx";
+import ContributorProfile from "./pages/ContributorProfile.jsx";
+import Contributors from "./pages/Contributors.jsx";
 import SettingsMenu from "./components/SettingsMenu.jsx";
-
 import { Ion } from "cesium";
 import useSettings from "./hooks/UseSettings.jsx";
 Ion.defaultAccessToken = import.meta.env.VITE_CESIUM_TOKEN;
@@ -55,6 +56,8 @@ const AppContent = () => {
           <Route path="/footer" element={<Footer />} />
           <Route path="/community/members" element={<Members />} />
           <Route path="/community/members/:slug" element={<MemberProfile />} />
+          <Route path="/contributors" element={<Contributors />} />
+          <Route path="/contributors/:slug" element={<ContributorProfile />} />
         </Routes>
       </main>
     </>

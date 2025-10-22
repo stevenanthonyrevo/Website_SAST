@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "kavya-katal",
+    "name": "Kavya Katal",
+    "role": "Maintainer",
+    "location": "Faridabad, Haryana, India",
+    "bio": "Passionate Full Stack Developer and AI enthusiast exploring the intersection of Open Source, Cloud Native, and Web Technologies. I enjoy contributing to developer communities, building scalable solutions, and continuously learning to create impactful, innovative systems.",
+    "avatarUrl": "https://github.com/KatalKavya96.png",
+    "links": {
+      "github": "https://github.com/KatalKavya96",
+      "x": "https://x.com/",
+      "linkedin": "https://www.linkedin.com/in/",
+      "community": "https://www.linkedin.com/company/society-for-aerospace-and-space-technology/?viewAsMember=true"
+    },
+    "repos": ["Website", "FTM", "Orbion", "Nebula"]
+  }
+]
