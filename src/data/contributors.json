@@ -5,6 +5,7 @@
     "role": "Maintainer",
     "location": "Faridabad, Haryana, India",
     "bio": "Passionate Full Stack Developer and AI enthusiast exploring the intersection of Open Source, Cloud Native, and Web Technologies. I enjoy contributing to developer communities, building scalable solutions, and continuously learning to create impactful, innovative systems.",
+    "status": "active",
     "avatarUrl": "https://github.com/KatalKavya96.png",
     "links": {
       "github": "https://github.com/KatalKavya96",
@@ -27,6 +28,21 @@
       "x": null,
       "linkedin": "https://www.linkedin.com/in/shaik-mohammed-junaid-sami-20885430b/",
       "community": null
+    },
+    "repos": ["Website"]
+  },
+  {
+    "slug": "kavya-mukhija",
+    "name": "Kavya Mukhija",
+    "role": "Contributor",
+    "location": "Rajasthan, India",
+    "bio": "Computer Science and AI undergraduate at Newton School of Technology, driven by a passion for applying cutting-edge technology to tackle real-world challenges. Proficient in C++ and Java with a keen interest in machine learning. Committed to driving innovation through collaborative projects and continuous learning in the ever-evolving tech landscape.",
+    "status": "active",
+    "avatarUrl": "https://media.licdn.com/dms/image/v2/D5622AQFpmZ9lolO1XQ/feedshare-shrink_1280/feedshare-shrink_1280/0/1731865806201?e=1762992000&v=beta&t=gz9sEjK7NEcmWnhOCMKEbVwFbuY92EtItygKZnZaCXk",
+    "links": {
+      "github": "https://github.com/KatalKavya96",
+      "linkedin": "https://www.linkedin.com/in/kavya-mukhija-59b75a323/",
+      "community": "https://www.linkedin.com/company/society-for-aerospace-and-space-technology/?viewAsMember=true"
     },
     "repos": ["Website"]
   }
