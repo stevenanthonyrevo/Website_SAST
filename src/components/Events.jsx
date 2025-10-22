@@ -166,44 +166,24 @@ const Events = () => {
       <div className="relative z-10 bg-black/80 min-h-screen pb-40">
        <section className="eventssec flex flex-col items-center mt-28 px-2">
 
-  {/* Calendar Badge */}
-  <Link 
-    to="/calendar"
-    className="group relative mb-8 px-6 py-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 hover:from-blue-500/30 hover:to-cyan-500/30 backdrop-blur-lg border border-blue-400/30 hover:border-blue-400/50 rounded-full transition-all duration-300 shadow-lg hover:shadow-blue-500/50"
-  >
-    <div className="flex items-center gap-3">
-      <svg 
-        className="w-5 h-5 text-blue-400 group-hover:text-cyan-400 transition-colors" 
-        fill="none" 
-        stroke="currentColor" 
-        viewBox="0 0 24 24"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-      <span className="text-white font-semibold group-hover:text-blue-300 transition-colors">
-        View Full Calendar
-      </span>
-      <svg 
-        className="w-4 h-4 text-blue-400 group-hover:translate-x-1 transition-transform" 
-        fill="none" 
-        stroke="currentColor" 
-        viewBox="0 0 24 24"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-      </svg>
-    </div>
-  </Link>
+  {/* Filter Bar with Calendar Pill */}
+  <div className="flex items-center justify-between gap-4 w-full max-w-[90vw] sm:w-[600px] mb-8" style={{ marginTop: "4%" }}>
+    <Link
+      to="/calendar"
+      className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 text-sm text-white/90 backdrop-blur hover:bg-white/10 transition-colors duration-200"
+      style={{ padding: "0.5rem 1rem" }}
+    >
+      <span>Calendar</span>
+    </Link>
 
-  {/* Filter Bar */}
- <div
-  className="relative w-full max-w-[90vw] sm:w-[600px] flex items-center justify-start rounded-md sm:justify-between overflow-x-auto sm:overflow-visible no-scrollbar px-4 sm:px-10 gap-4"
-  style={{
-    marginTop: "4%",
-    backgroundColor: "rgba(255,255,255,0.08)",
-    boxShadow: "0 0 12px 4px rgba(59, 130, 246, 0.5)",
-    height: "36px",
-  }}
->
+    <div
+      className="relative flex-1 flex items-center justify-start rounded-md sm:justify-between overflow-x-auto sm:overflow-visible no-scrollbar px-4 sm:px-10 gap-4"
+      style={{
+        backgroundColor: "rgba(255,255,255,0.08)",
+        boxShadow: "0 0 12px 4px rgba(59, 130, 246, 0.5)",
+        height: "36px",
+      }}
+    >
   {filterTypes.map((type, index) => (
     <button
       key={type}
@@ -226,9 +206,8 @@ const Events = () => {
       {type === "future" && "Future Events"}
     </button>
   ))}
-</div>
-
-
+    </div>
+  </div>
 
   {/* Events Grid */}
   <div className="events grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 px-4 w-full max-w-7xl">
