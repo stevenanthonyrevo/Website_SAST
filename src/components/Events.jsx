@@ -170,7 +170,7 @@ const Events = () => {
   <div className="flex items-center justify-between gap-4 w-full max-w-[90vw] sm:w-[600px] mb-8" style={{ marginTop: "4%" }}>
     <Link
       to="/calendar"
-      className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 text-sm text-white/90 backdrop-blur hover:bg-white/10 transition-colors duration-200"
+      className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 text-sm text-white/90 backdrop-blur hover:bg-white/10 transition-colors duration-200"
       style={{ padding: "0.5rem 1rem" }}
     >
       <span>Calendar</span>
