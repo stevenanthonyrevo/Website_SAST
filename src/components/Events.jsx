@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../index.css";
 import { motion } from "framer-motion";
 import videoe1 from "../Landing_media/satellitevid.mp4";
@@ -165,12 +166,39 @@ const Events = () => {
       <div className="relative z-10 bg-black/80 min-h-screen pb-40">
        <section className="eventssec flex flex-col items-center mt-28 px-2">
 
+  {/* Calendar Badge */}
+  <Link 
+    to="/calendar"
+    className="group relative mb-8 px-6 py-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 hover:from-blue-500/30 hover:to-cyan-500/30 backdrop-blur-lg border border-blue-400/30 hover:border-blue-400/50 rounded-full transition-all duration-300 shadow-lg hover:shadow-blue-500/50"
+  >
+    <div className="flex items-center gap-3">
+      <svg 
+        className="w-5 h-5 text-blue-400 group-hover:text-cyan-400 transition-colors" 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+      <span className="text-white font-semibold group-hover:text-blue-300 transition-colors">
+        View Full Calendar
+      </span>
+      <svg 
+        className="w-4 h-4 text-blue-400 group-hover:translate-x-1 transition-transform" 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+      </svg>
+    </div>
+  </Link>
 
   {/* Filter Bar */}
  <div
   className="relative w-full max-w-[90vw] sm:w-[600px] flex items-center justify-start rounded-md sm:justify-between overflow-x-auto sm:overflow-visible no-scrollbar px-4 sm:px-10 gap-4"
   style={{
-    marginTop: "12%",
+    marginTop: "4%",
     backgroundColor: "rgba(255,255,255,0.08)",
     boxShadow: "0 0 12px 4px rgba(59, 130, 246, 0.5)",
     height: "36px",
@@ -318,7 +346,7 @@ const Events = () => {
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.6, delay: index * 0.12 }}
   viewport={{ once: true, amount: 0.2 }}
-  className="block lg:hidden relative flex items-start gap-6 px-4 mb-12 sm:mb-16" // Updated spacing
+  className="lg:hidden relative flex items-start gap-6 px-4 mb-12 sm:mb-16" // Updated spacing
 >
   {/* Timeline Line and Dot */}
   <div className="relative">
