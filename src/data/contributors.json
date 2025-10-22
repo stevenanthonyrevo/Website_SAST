@@ -104,5 +104,21 @@
       "community": "https://www.linkedin.com/company/society-for-aerospace-and-space-technology/?viewAsMember=true"
     },
     "repos": ["Website"]
+  },
+  {
+    "slug": "ankit-kumar-pandey",
+    "name": "Ankit Kumar Pandey",
+    "role": "Contributor",
+    "location": "Delhi, India",
+    "bio": "B.Tech student specialising in Computer Science and Artificial Intelligence at Newton School of Technology. Passionate about leveraging technology to solve real-world problems. Experienced in C++ and Java. Enthusiast of machine learning, aiming to contribute to innovative projects. Always eager to learn and grow in the dynamic field of technology.",
+    "status": "active",
+    "avatarUrl": "https://media.licdn.com/dms/image/v2/D5603AQEVqh5V3TCD3w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724601446512?e=1762387200&v=beta&t=G_9xhuuj0Ai845-mHFjgsVuPz98K3vv_LDbuzO4wKXQ",
+    "links": {
+      "github": "https://github.com/Ankitgkp",
+      "x": null,
+      "linkedin": "https://www.linkedin.com/in/ankit-pandey01/",
+      "community": null
+    },
+    "repos": ["Website" , "Nebula" , "FTM"]
   }
 ]
