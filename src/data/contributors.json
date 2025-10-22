@@ -48,7 +48,7 @@
     },
     "repos": ["Website"]
   },
-    {
+  {
     "slug": "chaitanya-sai-meka",
     "name": "Chaitanya Sai Meka",
     "role": "Contributor",
@@ -61,5 +61,19 @@
       "community": "https://www.linkedin.com/company/society-for-aerospace-and-space-technology/?viewAsMember=true"
     },
     "repos": ["Website"]
+  },
+  {
+    "slug": "neelanshu-karn",
+    "name": "Neelanshu Karn",
+    "role": "Contributor",
+    "location": "Prayagraj, Uttar Pradesh",
+    "bio": "President SAST, Tech Leader - Leads Innovation through Technology",
+    "avatarUrl": "https://media.licdn.com/dms/image/v2/D4E03AQG5IMAd_OxYLg/profile-displayphoto-shrink_800_800/B4EZWOxzmZH0Ac-/0/1741857176517?e=1762992000&v=beta&t=3t-vI4PiVQ44pqGZr2NW531NIn430G3Fh_FxZhSo1zA",
+    "links": {
+      "github": "https://github.com/karn-cyber",
+      "linkedin": "https://www.linkedin.com/in/neelanshu-karn-05146130a/?originalSubdomain=in",
+      "community": "https://www.linkedin.com/company/society-for-aerospace-and-space-technology/?viewAsMember=true"
+    },
+    "repos": ["Website", "Orbion", "Nebula"]
   }
 ]
