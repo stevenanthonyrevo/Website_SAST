@@ -3,7 +3,7 @@ import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay, isToday, addMonths, subMonths, parseISO, isBefore, isAfter, startOfDay } from "date-fns";
 import { ChevronLeft, ChevronRight, Calendar, MapPin, Clock, ExternalLink, Tag, X } from "lucide-react";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/events-calendar/utils";
 import "./EventCalendar.css";
 
 // EventCalendar Component - Pass events as props

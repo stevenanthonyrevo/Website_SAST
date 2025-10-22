@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { motion } from "framer-motion";
-import EventCalendar from "../components/EventCalendar";
+import EventCalendar from "../components/EventCalendar/EventCalendar";
 import eventsData from "../data/calendarEvents.json";
-import "../components/EventCalendar.css";
+import "../components/EventCalendar/EventCalendar.css";
 
 const EventCalendarPage = () => {
   return (
