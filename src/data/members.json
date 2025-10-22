@@ -84,7 +84,9 @@
     "avatarUrl": "https://i.postimg.cc/z3YZjVtN/rps.jpg",
     "links": {
       "github": "https://github.com/Rudra-choudhary",
-      "linkedin": "https://www.linkedin.com/in/rudra-choudhary-b27b41306/"
+      "x": null,
+      "linkedin": "https://www.linkedin.com/in/rudra-choudhary-b27b41306/",
+      "community": null
     }
   },
   {
@@ -112,7 +114,23 @@
     "avatarUrl": "https://media.licdn.com/dms/image/v2/D5622AQFpmZ9lolO1XQ/feedshare-shrink_1280/feedshare-shrink_1280/0/1731865806201?e=1762992000&v=beta&t=gz9sEjK7NEcmWnhOCMKEbVwFbuY92EtItygKZnZaCXk",
     "links": {
       "github": "https://github.com/offxkavya",
+      "x": null,
       "linkedin": "https://www.linkedin.com/in/kavya-mukhija-59b75a323/",
+      "community": null
+    }
+  },
+  {
+    "slug": "kunal-vats",
+    "name": "Kunal Vats",
+    "role": "Member",
+    "location": "Bhiwadi, Rajasthan",
+    "bio": null,
+    "status": "active",
+    "avatarUrl": "https://github.com/1Kunalvats9.png",
+    "links": {
+      "github": "https://github.com/1Kunalvats9",
+      "x": null,
+      "linkedin": "https://www.linkedin.com/in/kunal-vats-b67aa2309/",
       "community": null
     }
   }
