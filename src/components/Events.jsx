@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../index.css";
 import { motion } from "framer-motion";
 import videoe1 from "../Landing_media/satellitevid.mp4";
@@ -165,17 +166,24 @@ const Events = () => {
       <div className="relative z-10 bg-black/80 min-h-screen pb-40">
        <section className="eventssec flex flex-col items-center mt-28 px-2">
 
+  {/* Filter Bar with Calendar Pill */}
+  <div className="flex items-center justify-between gap-4 w-full max-w-[90vw] sm:w-[600px] mb-8" style={{ marginTop: "4%" }}>
+    <Link
+      to="/calendar"
+      className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 text-sm text-white/90 backdrop-blur hover:bg-white/10 transition-colors duration-200"
+      style={{ padding: "0.5rem 1rem" }}
+    >
+      <span>Calendar</span>
+    </Link>
 
-  {/* Filter Bar */}
- <div
-  className="relative w-full max-w-[90vw] sm:w-[600px] flex items-center justify-start rounded-md sm:justify-between overflow-x-auto sm:overflow-visible no-scrollbar px-4 sm:px-10 gap-4"
-  style={{
-    marginTop: "12%",
-    backgroundColor: "rgba(255,255,255,0.08)",
-    boxShadow: "0 0 12px 4px rgba(59, 130, 246, 0.5)",
-    height: "36px",
-  }}
->
+    <div
+      className="relative flex-1 flex items-center justify-start rounded-md sm:justify-between overflow-x-auto sm:overflow-visible no-scrollbar px-4 sm:px-10 gap-4"
+      style={{
+        backgroundColor: "rgba(255,255,255,0.08)",
+        boxShadow: "0 0 12px 4px rgba(59, 130, 246, 0.5)",
+        height: "36px",
+      }}
+    >
   {filterTypes.map((type, index) => (
     <button
       key={type}
@@ -198,9 +206,8 @@ const Events = () => {
       {type === "future" && "Future Events"}
     </button>
   ))}
-</div>
-
-
+    </div>
+  </div>
 
   {/* Events Grid */}
   <div className="events grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 px-4 w-full max-w-7xl">
@@ -318,7 +325,7 @@ const Events = () => {
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.6, delay: index * 0.12 }}
   viewport={{ once: true, amount: 0.2 }}
-  className="block lg:hidden relative flex items-start gap-6 px-4 mb-12 sm:mb-16" // Updated spacing
+  className="lg:hidden relative flex items-start gap-6 px-4 mb-12 sm:mb-16" // Updated spacing
 >
   {/* Timeline Line and Dot */}
   <div className="relative">
