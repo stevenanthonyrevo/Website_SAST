@@ -101,5 +101,20 @@
       "linkedin": "https://www.linkedin.com/in/ankit-pandey01/",
       "community": null
     }
+  },
+  {
+    "slug": "kunal-vats",
+    "name": "Kunal Vats",
+    "role": "Member",
+    "location": "Bhiwadi, Rajasthan",
+    "bio": null,
+    "status": "active",
+    "avatarUrl": "https://github.com/1Kunalvats9.png",
+    "links": {
+      "github": "https://github.com/1Kunalvats9",
+      "x": null,
+      "linkedin": "https://www.linkedin.com/in/kunal-vats-b67aa2309/",
+      "community": null
+    }
   }
 ]
