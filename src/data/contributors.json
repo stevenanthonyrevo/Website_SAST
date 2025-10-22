@@ -16,6 +16,7 @@
     "repos": ["Website", "FTM", "Orbion", "Nebula"]
   },
   {
+
     "slug": "shaik-junaid-sami",
     "name": "Shaik Junaid Sami",
     "role": "Contributor",
@@ -32,6 +33,7 @@
     "repos": ["Website"]
   },
   {
+
     "slug": "kavya-mukhija",
     "name": "Kavya Mukhija",
     "role": "Contributor",
@@ -42,6 +44,20 @@
     "links": {
       "github": "https://github.com/KatalKavya96",
       "linkedin": "https://www.linkedin.com/in/kavya-mukhija-59b75a323/",
+      "community": "https://www.linkedin.com/company/society-for-aerospace-and-space-technology/?viewAsMember=true"
+    },
+    "repos": ["Website"]
+  },
+    {
+    "slug": "chaitanya-sai-meka",
+    "name": "Chaitanya Sai Meka",
+    "role": "Contributor",
+    "location": "Rajahmundry, Andhra Pradesh, India",
+    "bio": "Open Source Contributor",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/176647589?v=4",
+    "links": {
+      "github": "https://github.com/ChaitanyaSai-Meka",
+      "linkedin": "https://www.linkedin.com/in/chaitanya-sai-meka/",
       "community": "https://www.linkedin.com/company/society-for-aerospace-and-space-technology/?viewAsMember=true"
     },
     "repos": ["Website"]
