@@ -55,5 +55,19 @@
       "community": "https://www.linkedin.com/company/society-for-aerospace-and-space-technology/?viewAsMember=true"
     },
     "repos": ["Website", "Orbion", "Nebula"]
+  },
+    {
+    "slug": "sai-sathwik-anchuri",
+    "name": "Sai Sathwik Anchuri",
+    "role": "Contributor",
+    "location": "Hyderabad, Telangana",
+    "bio": "Tech enthusiast exploring open-source, innovation, and impactful problem-solving.",
+    "avatarUrl": "https://github.com/SaiSathwikAnchuri.png",
+    "links": {
+      "github": "https://github.com/SaiSathwikAnchuri",
+      "linkedin": "https://linkedin.com/in/saisathwik-anchuri-604b85292/",
+      "community": null
+    },
+    "repos": ["Website"]
   }
 ]
