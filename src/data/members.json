@@ -84,7 +84,9 @@
     "avatarUrl": "https://i.postimg.cc/z3YZjVtN/rps.jpg",
     "links": {
       "github": "https://github.com/Rudra-choudhary",
-      "linkedin": "https://www.linkedin.com/in/rudra-choudhary-b27b41306/"
+      "x": null,
+      "linkedin": "https://www.linkedin.com/in/rudra-choudhary-b27b41306/",
+      "community": null
     }
   },
   {
@@ -99,6 +101,21 @@
       "github": "https://github.com/Ankitgkp",
       "x": "https://x.com/proprataya",
       "linkedin": "https://www.linkedin.com/in/ankit-pandey01/",
+      "community": null
+    }
+  },
+  {
+    "slug": "kavya-mukhija",
+    "name": "Kavya Mukhija",
+    "role": "Member",
+    "location": "Delhi",
+    "bio": "Computer Science and AI undergraduate at Newton School of Technology, driven by a passion for applying cutting-edge technology to tackle real-world challenges. Proficient in C++ and Java with a keen interest in machine learning. Committed to driving innovation through collaborative projects and continuous learning in the ever-evolving tech landscape.",
+    "status": "active",
+    "avatarUrl": "https://media.licdn.com/dms/image/v2/D5622AQFpmZ9lolO1XQ/feedshare-shrink_1280/feedshare-shrink_1280/0/1731865806201?e=1762992000&v=beta&t=gz9sEjK7NEcmWnhOCMKEbVwFbuY92EtItygKZnZaCXk",
+    "links": {
+      "github": "https://github.com/offxkavya",
+      "x": null,
+      "linkedin": "https://www.linkedin.com/in/kavya-mukhija-59b75a323/",
       "community": null
     }
   },
